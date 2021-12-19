@@ -1,6 +1,10 @@
-THE CODE IMPLEMENTED HERE IS DOCUMENTED BELOW
+# CLOCK MODULE
+The clock module is a small form factor product with a screen to indicate time and buttons to turn the LEDs on and off. One is able to update time date and day displayed depending on your time zone by use of a single buttons thanks to efficiently designed firmware.The product is powered by a single non-rechargeable coin cell battery ensuring a small and efficient form factor.
 
-THE LOGO button is used to set time and also wake the chip from sleep.
+
+
+### Detailed instruction 
+THE LOGO button is used to wake the chip from sleep and set time.
 When pressed, the board wakes up and display the current time and date and day for 30seconds then it goes to sleep once more
 
 when the borad is active:
