@@ -18,7 +18,7 @@ when the borad is active:
 
 the current time will be updated with the time just set and displayed on the screen
 
-# Download the Files : arrow_down_small:
+# Download the Files :arrow_down_small:
 From this repo click on the download option at the code :arrow_double_down: 
 - You will have two folders inside the main folder i.e 📁 Bootloader and  📁clock_module_code
 # Burning bootload to the MCU :fire:
