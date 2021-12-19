@@ -26,7 +26,7 @@ From this repo click on the download option at the code :arrow_double_down:
  DO THIS ON A WINDOWS OPERATING SYSTEM!!!
   </h3>
 1) To do this you will need an older version of the arduino particularly version 1.6.9 find it here :link: [Old SoftwareReleases Arduino IDE](https://www.arduino.cc/en/main/OldSoftwareReleases) <br/>
-2) Once you have it setup to burn the bootloader follow this tutotial keenly:link: [Burning Arduino Bootloader](https://create.arduino.cc/projecthub/techmirtz/arduino-without-external-clock-crystal-on-atmega328-d4fcc4) 
+2) Once you have it setup to burn the bootloader follow this tutotial keenly:link: [Burning Arduino Bootloader](https://create.arduino.cc/projecthub/techmirtz/arduino-without-external-clock-crystal-on-atmega328-d4fcc4) <br>
 3) You can also use a USBASP to burn the bootloader. Note the above instruction will be used but instead of selecting arduino as ISP your programmer the USBASP is selected. 
 
 ![image](https://user-images.githubusercontent.com/85989401/146667082-94dd6fc7-de50-4675-a084-ad729f834af0.png)
@@ -39,7 +39,7 @@ or here
 # Uploading the codes  :arrow_up:
 1) Open the 📁clock_module_code Folder and open the INO file with your arduino
 2) If you use Arduino as your programmer or an FTDI, Follow the instructions here from step 3: [Uploading Code](https://create.arduino.cc/projecthub/techmirtz/arduino-without-external-clock-crystal-on-atmega328-d4fcc4)
-3) However if you are using a USBASP, Follow the following instructions:
+3) However if you are using a USBASP, Follow the following instructions:<br>
    a) Insert the ISP programmer cable socket onto ISP header. ...<br>
    b) Open Arduino IDE software. ...<br>
    c) Next, call out any example of source code. ...<br>
