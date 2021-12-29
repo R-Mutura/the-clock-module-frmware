@@ -6,8 +6,8 @@ The clock module is a small form factor product with a screen to indicate time a
 ### How it works 🔧
         
 The LOGO button is used to wake the chip from sleep and set time.
-When pressed, the board wakes up and displays the current time, date and day for 30seconds then it goes to sleep once more
-
+When pressed, the board wakes up and displays the current time, date and day for 30seconds then it goes to sleep.
+Press the either of the other two buttons to turn on or off the light(LEDs).
 #### Setting time 🕙
 
 when the borad is active:
