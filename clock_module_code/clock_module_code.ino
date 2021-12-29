@@ -161,9 +161,9 @@ void loop() {
     //function to display the time, day and date /....normal operation area
    gettime();
    u8g2.clearBuffer();
-   u8g2.drawStr(31,4,day_data);
-   u8g2.drawStr(31,18,time_data);  // write data to the internal memory
-   u8g2.drawStr(31,28,date_data);
+   u8g2.drawStr(2,4,day_data);
+   u8g2.drawStr(3,18,time_data);  // write data to the internal memory
+   u8g2.drawStr(3,28,date_data);
    u8g2.sendBuffer();         // transfer internal memory to the display
    }while(millis()-current_time<=on_time);
    
@@ -238,44 +238,44 @@ void increment(int location){       //function to increment only the active vari
   char *buf; //local buffer to store our character arrat and dispaly it on the screen
     if (location==0){
      u8g2.clearBuffer();
-     u8g2.drawStr(3,24,"sec");
-     u8g2.drawStr(31,24,itoa(thistime.my_seconds, buf,3));  // write data to the internal memory
+     u8g2.drawStr(3,8,"sec");
+     u8g2.drawStr(3,24,itoa(thistime.my_seconds, buf,3));  // write data to the internal memory
      u8g2.sendBuffer();         // transfer internal memory to the display
       }
    else if (location==1){
      u8g2.clearBuffer();
-     u8g2.drawStr(3,24,"min");
-     u8g2.drawStr(31,24,itoa(thistime.my_minutes,buf,3));  // write data to the internal memory
+     u8g2.drawStr(3,8,"min");
+     u8g2.drawStr(3,24,itoa(thistime.my_minutes,buf,3));  // write data to the internal memory
      u8g2.sendBuffer();         // transfer internal memory to the display
       }
      else if (location==2){
      u8g2.clearBuffer();
-     u8g2.drawStr(3,24,"hrs");
-     u8g2.drawStr(31,24,itoa(thistime.my_hour,buf,3));  // write data to the internal memory
+     u8g2.drawStr(3,8,"hrs");
+     u8g2.drawStr(3,24,itoa(thistime.my_hour,buf,3));  // write data to the internal memory
      u8g2.sendBuffer();         // transfer internal memory to the display
       }
         else if (location==3){
      u8g2.clearBuffer();
-     u8g2.drawStr(3,24,"date");
-     u8g2.drawStr(31,24,itoa(thistime.my_date,buf,3));  // write data to the internal memory
+     u8g2.drawStr(3,8,"date");
+     u8g2.drawStr(3,24,itoa(thistime.my_date,buf,3));  // write data to the internal memory
      u8g2.sendBuffer();         // transfer internal memory to the display
       }
         else if (location==4){
      u8g2.clearBuffer();
-     u8g2.drawStr(3,24,"month");
-     u8g2.drawStr(31,24,itoa(thistime.my_month,buf,3));  // write data to the internal memory
+     u8g2.drawStr(3,8,"month");
+     u8g2.drawStr(3,24,itoa(thistime.my_month,buf,3));  // write data to the internal memory
      u8g2.sendBuffer();         // transfer internal memory to the display
       }
         else if (location==5){
      u8g2.clearBuffer();
-     u8g2.drawStr(3,24,"year");
-     u8g2.drawStr(31,24,itoa(thistime.my_year,buf,5));  // write data to the internal memory
+     u8g2.drawStr(3,8,"year");
+     u8g2.drawStr(3,24,itoa(thistime.my_year,buf,5));  // write data to the internal memory
      u8g2.sendBuffer();         // transfer internal memory to the display
       }
          else if (location==6){
      u8g2.clearBuffer();
-     u8g2.drawStr(3,24,"day");
-     u8g2.drawStr(31,24,daysOfTheWeek[thistime.my_day]);  // write data to the internal memory
+     u8g2.drawStr(3,8,"day");
+     u8g2.drawStr(3,24,daysOfTheWeek[thistime.my_day]);  // write data to the internal memory
      u8g2.sendBuffer();         // transfer internal memory to the display
       }
   }
