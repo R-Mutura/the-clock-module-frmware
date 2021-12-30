@@ -1,9 +1,7 @@
 # CLOCK MODULE
 The clock module is a small form factor product with a screen to indicate time and buttons to turn the LEDs on and off. One is able to update time, date and day displayed depending on your time_zone by use of a single buttons thanks to efficiently designed firmware.The product is powered by a single non-rechargeable coin cell battery ensuring a small and efficient form factor.
 
-![WhatsApp Image 2021-12-19 at 5 09 21 AM](https://user-images.githubusercontent.com/85989401/146666220-9c076c63-bdca-4207-948f-92d210eb038a.jpeg)
-
-### How it works 🔧
+### How it works 🔧![mini torch with clock](https://user-images.githubusercontent.com/85989401/147698037-247f7d3a-f2c7-4b93-9298-52d67cc089dc.png)
         
 The LOGO button is used to wake the chip from sleep and set time.
 When pressed, the board wakes up and displays the current time, date and day for 30seconds then it goes to sleep.
