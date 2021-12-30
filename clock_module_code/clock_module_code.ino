@@ -1,11 +1,16 @@
 #include <Arduino.h>
-#include <U8g2lib.h>
+//#include <U8g2lib.h>
 #include <SPI.h>
 #include <Wire.h>
 #include "RTClib.h"
 //#include <DS3231.h>
 #include <OneButton.h>
 #include "LowPower.h"
+
+#include "er_oled.h"//oled display driver 96x16
+
+//display constants
+uint8_t oled_buf[WIDTH * HEIGHT / 8];
 
 //buttons pd2(lightA btn) pd3 pd4
 //leds pd5(led2) pd6(led1)
@@ -46,11 +51,6 @@ char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursd
 #define debugln(x)
 #endif
 
-
-//instantiate the U8g2lib class
-U8G2_SSD1306_128X32_UNIVISION_F_HW_I2C u8g2(U8G2_R0); 
-
-
 char time_data[11];
 char date_data[11];
 char day_data[13];
@@ -90,11 +90,14 @@ void toggle_B(){
  
 void setup() {
   // put your setup code here, to run once:
-   u8g2.begin();
-   u8g2.clearBuffer();
-   //u8g2.setFont(u8g2_font_logisoso28_tr);
-   u8g2.setFont(u8g2_font_freedoomr25_mn);//selecting the appropriate font choose a suitable font at https://github.com/olikraus/u8g2/wiki/fntlistall
-   if (! rtc.begin()) {
+  Wire.begin(); //start the i2c 
+  /* display an image of bitmap matrix */
+  er_oled_begin();
+  er_oled_clear(oled_buf);
+  delay(30);
+  command(0xa6);//--set normal display
+  
+    if (! rtc.begin()) {
     debugln("Couldn't find RTC");
     while (1);
   }
@@ -160,11 +163,11 @@ void loop() {
     
     //function to display the time, day and date /....normal operation area
    gettime();
-   u8g2.clearBuffer();
-   u8g2.drawStr(2,4,day_data);
-   u8g2.drawStr(3,18,time_data);  // write data to the internal memory
-   u8g2.drawStr(3,28,date_data);
-   u8g2.sendBuffer();         // transfer internal memory to the display
+   er_oled_clear(oled_buf);
+   er_oled_string(2,18,day_data, 4, 1, oled_buf);
+   er_oled_string(10,10,time_data,8, 1, oled_buf);  // write data to the internal memory
+   er_oled_string(14,14,date_data,4, 1, oled_buf);
+   er_oled_display(oled_buf);       // transfer internal memory to the display
    }while(millis()-current_time<=on_time);
    
 }
@@ -237,45 +240,45 @@ void increment(int location){       //function to increment only the active vari
   //funtion to show the active variable.
   char *buf; //local buffer to store our character arrat and dispaly it on the screen
     if (location==0){
-     u8g2.clearBuffer();
-     u8g2.drawStr(3,8,"sec");
-     u8g2.drawStr(3,24,itoa(thistime.my_seconds, buf,3));  // write data to the internal memory
-     u8g2.sendBuffer();         // transfer internal memory to the display
+     er_oled_clear(oled_buf);
+     er_oled_string(8,4,"sec",4, 1, oled_buf);
+     er_oled_string(8,10,itoa(thistime.my_seconds, buf,3),8,1, oled_buf);  // write data to the internal memory
+     er_oled_display(oled_buf);        // transfer internal memory to the display
       }
    else if (location==1){
-     u8g2.clearBuffer();
-     u8g2.drawStr(3,8,"min");
-     u8g2.drawStr(3,24,itoa(thistime.my_minutes,buf,3));  // write data to the internal memory
-     u8g2.sendBuffer();         // transfer internal memory to the display
+     er_oled_clear(oled_buf);
+     er_oled_string(8,4,"min",4, 1, oled_buf);
+     er_oled_string(8,10,itoa(thistime.my_minutes,buf,3),8,1, oled_buf);  // write data to the internal memory
+     er_oled_display(oled_buf);          // transfer internal memory to the display
       }
      else if (location==2){
-     u8g2.clearBuffer();
-     u8g2.drawStr(3,8,"hrs");
-     u8g2.drawStr(3,24,itoa(thistime.my_hour,buf,3));  // write data to the internal memory
-     u8g2.sendBuffer();         // transfer internal memory to the display
+     er_oled_clear(oled_buf);
+     er_oled_string(8,4,"hrs",4, 1, oled_buf);
+     er_oled_string(8,10,itoa(thistime.my_hour,buf,3),8,1, oled_buf); // write data to the internal memory
+     er_oled_display(oled_buf);         // transfer internal memory to the display
       }
         else if (location==3){
-     u8g2.clearBuffer();
-     u8g2.drawStr(3,8,"date");
-     u8g2.drawStr(3,24,itoa(thistime.my_date,buf,3));  // write data to the internal memory
-     u8g2.sendBuffer();         // transfer internal memory to the display
+     er_oled_clear(oled_buf);
+     er_oled_string(8,4,"date",4, 1, oled_buf);
+     er_oled_string(8,10,itoa(thistime.my_date,buf,3),8,1, oled_buf);  // write data to the internal memory
+     er_oled_display(oled_buf);        // transfer internal memory to the display
       }
         else if (location==4){
-     u8g2.clearBuffer();
-     u8g2.drawStr(3,8,"month");
-     u8g2.drawStr(3,24,itoa(thistime.my_month,buf,3));  // write data to the internal memory
-     u8g2.sendBuffer();         // transfer internal memory to the display
+      er_oled_clear(oled_buf);
+     er_oled_string(8,4,"month",4, 1, oled_buf);
+     er_oled_string(8,10,itoa(thistime.my_month,buf,3),8,1, oled_buf);  // write data to the internal memory
+     er_oled_display(oled_buf);           // transfer internal memory to the display
       }
         else if (location==5){
-     u8g2.clearBuffer();
-     u8g2.drawStr(3,8,"year");
-     u8g2.drawStr(3,24,itoa(thistime.my_year,buf,5));  // write data to the internal memory
-     u8g2.sendBuffer();         // transfer internal memory to the display
+     er_oled_clear(oled_buf);
+     er_oled_string(8,4,"year",4, 1, oled_buf);
+     er_oled_string(8,10,itoa(thistime.my_year,buf,5),8,1, oled_buf);  // write data to the internal memory
+     er_oled_display(oled_buf);             // transfer internal memory to the display
       }
          else if (location==6){
-     u8g2.clearBuffer();
-     u8g2.drawStr(3,8,"day");
-     u8g2.drawStr(3,24,daysOfTheWeek[thistime.my_day]);  // write data to the internal memory
-     u8g2.sendBuffer();         // transfer internal memory to the display
+     er_oled_clear(oled_buf);
+     er_oled_string(8,4,"day",4, 1, oled_buf);
+     er_oled_string(8,10,daysOfTheWeek[thistime.my_day],8,1, oled_buf);  // write data to the internal memory
+     er_oled_display(oled_buf);         // transfer internal memory to the display
       }
   }
